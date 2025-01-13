@@ -22,10 +22,10 @@ on:
  
 
 env:
-  REPO_URL: https://github.com/zikura88/immortalwrt-mt798x
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: rax3000m_240305.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   TZ: Asia/Shanghai
@@ -95,6 +95,12 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
+    - name: 替换修改过的eeprom
+      run: |
+       mkdir openwrt/target/linux/mediatek/mt7981/base-files/lib/firmware
+       cp eeprom/MT7981_iPAiLNA_EEPROM.bin  openwrt/target/linux/mediatek/mt7981/base-files/lib/firmware/MT7981_iPAiLNA_EEPROM.bin
+       sed -i 's#./files/mt7981-default-eeprom/MT7981_iPAiLNA_EEPROM.bin##' openwrt/package/mtk/drivers/mt_wifi/Makefile
+       
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
