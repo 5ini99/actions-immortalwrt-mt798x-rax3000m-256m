@@ -14,9 +14,13 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
+#echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
 #echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
 #echo "src-git OpenClash https://github.com/vernesong/OpenClash.git" >> ./feeds.conf.default
+
+echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
+echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git^24.11.19-2" >> ./feeds.conf.default
+echo "src-git 5G_modem_support https://github.com/Siriling/5G-Modem-Support.git" >> ./feeds.conf.default
 
 #添加额外软件包
 #git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
